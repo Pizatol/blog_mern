@@ -1,5 +1,5 @@
 .form_container {
-  width: 500px;
+  width: 700px;
   height: 600px;
   border: 1px solid black;
   padding: 10px;
@@ -15,7 +15,8 @@
 .input {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  margin-bottom: 10px;
+  width: 600px;
   font-family: var(--Roboto);
   font-size: var(--size1);
 }
@@ -33,8 +34,9 @@
 }
 .input input:focus,
 .input textarea:focus {
-  outline: 2px solid var(--blue1);
-  border: none;
+  border: 2px solid var(--blue1);
+  outline: none;
+  box-shadow: var(--blue1) 0px 0px 5px;
 }
 
 .text_textarea textarea {
