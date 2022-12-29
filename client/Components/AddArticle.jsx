@@ -20,9 +20,9 @@ export default function AddArticle() {
             .then(() => {
                 try {
                     alert("Yeah it worked");
-                    setTitle('')
-                    setDescription('')
-                    setText('')
+                    setTitle("");
+                    setDescription("");
+                    setText("");
                 } catch (error) {
                     console.log(error);
                 }
@@ -42,13 +42,11 @@ export default function AddArticle() {
                     console.log(error);
                 }
             });
-
-           
     };
 
     return (
-        <div>
-            <form className={css.form_container}>
+        <div className={css.form_container}>
+            <form>
                 <h2 className={css.title_form}>New Article</h2>
                 <div className={css.input}>
                     <label>Title</label>
@@ -72,8 +70,12 @@ export default function AddArticle() {
                         value={text}
                     ></textarea>
                 </div>
-                {/* <button onClick={(e) => addArticle(e)}>Submit</button> */}
-                <Button_main name={"Submit"} color={"blue"} foo={(e) => addArticle(e)} />
+               
+                <Button_main
+                    name={"Submit"}
+                    color={"blue"}
+                    foo={(e) => addArticle(e)}
+                />
             </form>
         </div>
     );
