@@ -45,11 +45,17 @@ app.post("/addArticle", async (req, res) => {
     const descriptionn = req.body.description;
     const title = req.body.title;
     const texte = req.body.text;
+    const date = req.body.date;
+    const author = req.body.author;
+
+    
 
     const article = new ArticleModel({
         description: descriptionn,
         title: title,
         text: texte,
+        date : date,
+        author : author,
     });
 
     await article.save();

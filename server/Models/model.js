@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const ArticleSchema = new Schema({
     description: {
         type: String,
-        required: false,
+        required: true,
     },
     title: {
         type: String,
@@ -13,8 +13,16 @@ const ArticleSchema = new Schema({
 
     text: {
         type: String,
-        required: false,
+        required: true,
     },
+    date : {
+        type : String,
+        required: true
+    }, 
+    author : {
+        type : String,
+        required : true
+    }
 });
 const ArticleModel = mongoose.model("Articles", ArticleSchema);
 module.exports = ArticleModel;
