@@ -21,7 +21,7 @@ export default function Home() {
 
 
       <Link href={'/AllArticles'}>
-         Voir les articles
+         <button> All Articles</button>
       </Link>
     
     </div>

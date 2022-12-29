@@ -1,1 +1,37 @@
-/*# sourceMappingURL=Article_mini.module.css.map */
+.global_container {
+  display: flex;
+  align-items: center;
+  width: 800px;
+  height: 400px;
+  border-radius: 25px;
+  margin: 200px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.left_part_card {
+  position: relative;
+  min-width: 300px;
+  height: 300px;
+  border-radius: 25px;
+  overflow: hidden;
+  transform: translateX(-50px);
+}
+
+.image_card {
+  -o-object-fit: cover;
+     object-fit: cover;
+  overflow: hidden;
+}
+
+.right_part_card {
+  font-family: var(--DM);
+  color: var(--dark1);
+}
+.right_part_card h2 {
+  font-size: var(--size2);
+  font-weight: 600;
+}
+.right_part_card h3 {
+  color: var(--dark2);
+  margin-bottom: 50px;
+}/*# sourceMappingURL=Article_mini.module.css.map */

@@ -24,6 +24,19 @@ export default function Button_main({ foo, name, color }) {
                 {name}
             </button>
         ) : ''}
+        
+        {color === "orange" ? ( 
+
+<button
+    onClick={foo}
+    type="submit"
+    className={`${css.global_container} ${css.orange}`}
+>
+    {name}
+</button>
+) :'' }
+
+
         </>
     );
 }

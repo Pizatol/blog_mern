@@ -3,7 +3,7 @@
 import React, {useState, useEffect} from 'react'
 import css from '../styles/Pages/AllArticles.module.scss'
 import Axios from 'Axios'
-
+import Link from 'next/link'
 import Article_mini from '../Components/Article_mini'
 
 export default function AllArticles() {
@@ -31,6 +31,10 @@ export default function AllArticles() {
 	 <div>
 
 		<h1>All articles</h1>
+		<Link href={"/"}
+		>
+			<button>Retour</button>
+		</Link>
 
 		{
 			allArticles.map((item, index) => (
@@ -47,3 +51,4 @@ export default function AllArticles() {
 	 </div>
   )
 }
+
