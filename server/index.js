@@ -16,6 +16,7 @@ const connectDB = async () => {
     try {
         const conn = mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
+
         });
         console.log(`mongo is connected`);
     } catch (error) {
@@ -23,8 +24,23 @@ const connectDB = async () => {
         process.exit(1);
     }
 };
+
 connectDB();
 
+
+// FETCH ALL ARTICLES
+app.get('/fetchArticles', async (req,res) => {
+    ArticleModel.find({}, (error, result) => {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(result);
+        }
+    })
+})
+
+
+// ADD ARTICLE
 app.post("/addArticle", async (req, res) => {
     const descriptionn = req.body.description;
     const title = req.body.title;
