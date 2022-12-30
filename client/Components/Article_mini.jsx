@@ -3,7 +3,7 @@ import css from "../styles/Components/Article_mini.module.scss";
 import Button_main from "./Buttons/Button_main";
 import Image from "next/image";
 import Link from "next/link";
-import img2 from "../public/assets/images/img2.jpg";
+import img2 from "../public/assets/images/img00.jpg";
 
 export default function Article_mini({
     title,

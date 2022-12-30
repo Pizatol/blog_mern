@@ -62,8 +62,8 @@ export default function AddArticle() {
     };
 
     return (
-        <div className={css.form_container}>
-            <form>
+        <div >
+            <form className={css.form_container} >
                 <h2 className={css.title_form}>New Article</h2>
                 <div className={css.input}>
                     <label
