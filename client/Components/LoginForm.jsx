@@ -1,7 +1,7 @@
 import { sendPasswordResetEmail } from "firebase/auth";
 import React, { useState, useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
-import FirebaseAuthService from "../Firebase/FirebaseAuthService";
+import FirebaseAuthService from '../Firebase/FirebaseAuthService'
 import Image from "next/image";
 import css from "../styles/Components/LoginForm.module.scss";
 
@@ -41,12 +41,10 @@ export default function LoginForm() {
             try {
                 await FirebaseAuthService.loginUser(username, password);
 
-               
-                
-
                 setUsername("");
                 setPassword("");
                 toggleForm();
+                // FirebaseAuthService.subscribeToAuthChanges(user);
                 FirebaseAuthService.subscribeToAuthChanges(setUser);
                 toast.success(`Welcome ${trimedUsername} `, {
                     autoClose: 2000,
@@ -54,10 +52,9 @@ export default function LoginForm() {
                     closeOnClick: true,
                     pauseOnHover: false,
                 });
+            //    console.log(user.email);
                 setUserName(trimedUsername);
             } catch (error) {
-
-               
                 toast.error(` Email or Password invalid `, {
                     autoClose: 2000,
                     theme: "colored",
