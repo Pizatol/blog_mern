@@ -1,7 +1,7 @@
 .global_container {
     max-width: 1200px;
     width: auto;
-    height: 1000px;
+    height:auto;
 
     border-radius: 20px;
     overflow: hidden;
@@ -25,4 +25,29 @@
     flex-wrap: wrap;
     padding: 20px 30px;
     font-family: var(--DM);
+}
+
+.images_container {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    width: auto;
+    height: auto;
+    
+}
+
+.image_container_mini {
+   
+    position: relative;
+    width: 400px;
+    height: 300px;
+    margin: 10px 5px ;
+ 
+}
+.image {
+    object-fit: cover;
+    overflow: hidden;
+    
+    
+ 
 }

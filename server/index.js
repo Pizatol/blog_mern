@@ -53,18 +53,20 @@ app.put("/fetchOneArticle", async (req, res) => {
 
 // ADD ARTICLE
 app.post("/addArticle", async (req, res) => {
-    const descriptionn = req.body.description;
+    const description = req.body.description;
     const title = req.body.title;
     const texte = req.body.text;
     const date = req.body.date;
     const author = req.body.author;
+    const image = req.body.image;
 
     const article = new ArticleModel({
-        description: descriptionn,
+        description: description,
         title: title,
         text: texte,
         date: date,
         author: author,
+        image: image,
     });
 
     await article.save();

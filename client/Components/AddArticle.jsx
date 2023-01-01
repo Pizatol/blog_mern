@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import css from "../styles/Components/AddArticle.module.scss";
 import Axios from "Axios";
 import Button_main from "./Buttons/Button_main";
-
+import Input_image from "./Input_image";
 import formattedDate from "./formattedDate";
 
 export default function AddArticle() {
@@ -13,64 +13,78 @@ export default function AddArticle() {
     const [author, setAuthor] = useState("");
     const [articlesList, setArticlesList] = useState([]);
 
+    const [imageUpload, setImageUpload] = useState([]);
+    const [imageUrls, setImageUrls] = useState([]);
+    // const [tempoDisplayImages, setTempoDisplayImages] = useState([]);
+
+    // **********************
+    // console.log("IMG URL", imageUrls);
+
+
     const addArticle = async (e) => {
         e.preventDefault();
 
         const dateFormated = formattedDate();
 
-        if(title !== "" && description !=="" && text !== "" && author !== "" ){
-
-        
-
-        Axios.post("http://localhost:3001/addArticle", {
-            title: title,
-            description: description,
-            text: text,
-            author: author,
-            date: dateFormated,
-        })
-            .then(() => {
-                try {
-                    alert("Yeah it worked");
-                    setTitle("");
-                    setDescription("");
-                    setText("");
-                    setDate(undefined);
-                } catch (error) {
-                    console.log(error);
-                }
+        if (
+            title !== "" &&
+            description !== "" &&
+            text !== "" &&
+            author !== ""
+        ) {
+            Axios.post("http://localhost:3001/addArticle", {
+                title: title,
+                description: description,
+                text: text,
+                author: author,
+                date: dateFormated,
+                image: imageUrls,
             })
-            .then((response) => {
-                try {
-                    setArticlesList([
-                        ...articlesList,
-                        {
-                            // _id: response.data.id,
-                            title: title,
-                            description: description,
-                            text: text,
-                        },
-                    ]);
-                } catch (error) {
-                    console.log(error);
-                }
-            });
+                .then(() => {
+                    try {
+                        alert("Yeah it worked");
+                        setTitle("");
+                        setDescription("");
+                        setText("");
+                        setDate(undefined);
+                        setTempoDisplayImages([]);
+                        setImageUrls([]);
+                        setImageUpload([])
+                    } catch (error) {
+                        console.log(error);
+                    }
+                })
+                .then((response) => {
+                    try {
+                        setArticlesList([
+                            ...articlesList,
+                            {
+                                title: title,
+                                description: description,
+                                text: text,
+                                author: author,
+                                date: dateFormated,
+                                image: imageUrls,
+                                
+                            },
+                        ]);
+                    } catch (error) {
+                        console.log(error);
+                    }
+                });
         } else {
-            alert('Please complete the form')
+            alert("Please complete the form");
             return;
         }
     };
 
     return (
-        <div >
-            <form className={css.form_container} >
+        <div>
+            <form className={css.form_container}>
                 <h2 className={css.title_form}>New Article</h2>
                 <div className={css.input}>
-                    <label
-                    required
-                    >Author</label>
+                    <label>Author</label>
                     <input
-                        required
                         onChange={(e) => setAuthor(e.target.value)}
                         type="text"
                         value={author}
@@ -79,7 +93,6 @@ export default function AddArticle() {
                 <div className={css.input}>
                     <label>Title</label>
                     <input
-                        required
                         onChange={(e) => setTitle(e.target.value)}
                         type="text"
                         value={title}
@@ -88,18 +101,27 @@ export default function AddArticle() {
                 <div className={`${css.input} ${css.description_textarea}`}>
                     <label> Description</label>
                     <textarea
-                        required
                         onChange={(e) => setDescription(e.target.value)}
                         value={description}
                     ></textarea>
                 </div>
                 <div className={`${css.input} ${css.text_textarea}`}>
-                    <label required> Text</label>
+                    <label> Text</label>
                     <textarea
-                        required
                         onChange={(e) => setText(e.target.value)}
                         value={text}
                     ></textarea>
+                </div>
+
+                <div>
+                    <Input_image
+                        imageUrls={imageUrls}
+                        setImageUrls={setImageUrls}
+                    
+                    
+                        imageUpload={imageUpload}
+                        setImageUpload={setImageUpload}
+                    />
                 </div>
 
                 <Button_main

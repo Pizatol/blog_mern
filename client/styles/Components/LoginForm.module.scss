@@ -7,8 +7,10 @@
 
 .overlay {
 	background-color: #2f2f2f;
-	opacity: 70%;
+	opacity: 90%;
 	z-index: 4;
+	filter: blur(13px);
+	
 }
 .login_form_card {
 	position: fixed;
@@ -25,12 +27,15 @@
 	border: 1px solid #f1f1f1;
 	border-radius: 10px;
 	background-image: linear-gradient(to top, #a19da0 0%, #c8c8c8 100%);
+	// filter: blur(3px);
+	
 }
 
 .login_form_form_container {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
+	filter: blur(0px);
 }
 .login_form_icon_member_container {
   margin-top: 10px;

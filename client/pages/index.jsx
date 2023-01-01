@@ -7,9 +7,13 @@ import { useContext, useState } from "react";
 import { LoginContext } from "../context/LoginContext";
 import FirebaseAuthService from "../Firebase/FirebaseAuthService";
 
+
+
 export default function Home() {
     const { user, setUser, formOn, setFormOn, userName, setUserName } =
         useContext(LoginContext);
+
+   
 
         const toggleForm = () => {
           setFormOn(!formOn)
@@ -17,6 +21,7 @@ export default function Home() {
 
         const logOut = () => {
           FirebaseAuthService.logoutUser()
+          
         }
 
     return (
@@ -34,8 +39,14 @@ export default function Home() {
                
               
             </div>
-
-            <AddArticle />
+            {
+              user ? (
+                <Link href={'/NewArticle'}>
+                  <button> New article</button>
+                </Link>
+              ) :""
+            }
+           
 
             <Link href={"/AllArticles"}>
                 <button> All Articles</button>

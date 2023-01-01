@@ -4,4 +4,10 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 100px;
+}
+
+.userName {
+  font-size: var(--size2);
+  margin-left: 0px;
 }/*# sourceMappingURL=NavBar.module.css.map */

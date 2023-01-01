@@ -22,6 +22,10 @@ const ArticleSchema = new Schema({
     author : {
         type : String,
         required : true
+    },
+    image : {
+        type : Array,
+        required : false
     }
 });
 const ArticleModel = mongoose.model("Articles", ArticleSchema);

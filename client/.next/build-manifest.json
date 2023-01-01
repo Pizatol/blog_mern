@@ -25,6 +25,16 @@
       "static/chunks/main.js",
       "static/chunks/pages/AllArticles.js"
     ],
+    "/NewArticle": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/NewArticle.js"
+    ],
+    "/[DetailledArticle]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/[DetailledArticle].js"
+    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
