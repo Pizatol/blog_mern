@@ -15,14 +15,17 @@ export default function NewArticle() {
 	const router = useRouter()
 
 	useEffect(() => {
-		user ? "" : (router.push('/'))
+		user ? "" : (
+			router.push('/')
+			
+			)
 	}, [] )
 
   return (
 	 <div>
 		<div>
 			<Link href={'/'}>
-				<button> Retour</button>
+				<button> Retour !</button>
 			</Link>
 		</div>
 	<div>
