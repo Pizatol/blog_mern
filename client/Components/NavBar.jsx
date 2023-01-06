@@ -12,6 +12,7 @@ export default function NavBar() {
     FirebaseAuthService.subscribeToAuthChanges(setUser);
 
     const router = useRouter()
+
     const toggleForm = () => {
         setFormOn(!formOn);
     };
@@ -19,8 +20,9 @@ export default function NavBar() {
     const logOut = () => {
         FirebaseAuthService.logoutUser();
         router.push("/");
-        toast.success(`Bye} `, {
-            autoClose: 2000,
+        console.log("OK LOG");
+        toast.info(`Bye `, {
+            autoClose: 1000,
             theme: "colored",
             closeOnClick: true,
             pauseOnHover: false,

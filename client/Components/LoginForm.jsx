@@ -1,7 +1,7 @@
 import { sendPasswordResetEmail } from "firebase/auth";
 import React, { useState, useContext } from "react";
 import { LoginContext } from "../context/LoginContext";
-import FirebaseAuthService from '../Firebase/FirebaseAuthService'
+import FirebaseAuthService from "../Firebase/FirebaseAuthService";
 import Image from "next/image";
 import css from "../styles/Components/LoginForm.module.scss";
 
@@ -46,13 +46,14 @@ export default function LoginForm() {
                 toggleForm();
                 // FirebaseAuthService.subscribeToAuthChanges(user);
                 FirebaseAuthService.subscribeToAuthChanges(setUser);
+
                 toast.success(`Welcome ${trimedUsername} `, {
-                    autoClose: 2000,
+                    autoClose: 1000,
                     theme: "colored",
                     closeOnClick: true,
                     pauseOnHover: false,
                 });
-            //    console.log(user.email);
+                //    console.log(user.email);
                 setUserName(trimedUsername);
             } catch (error) {
                 toast.error(` Email or Password invalid `, {
@@ -62,7 +63,6 @@ export default function LoginForm() {
                     pauseOnHover: false,
                 });
                 return;
-
             }
         } else {
             try {
@@ -76,11 +76,9 @@ export default function LoginForm() {
                     pauseOnHover: false,
                 });
             } catch (error) {
-                
-                    toast.error('User already signed with this email')
-                    
-                
-              return;
+                toast.error("User already signed with this email");
+
+                return;
             }
         }
     };
@@ -103,18 +101,16 @@ export default function LoginForm() {
         try {
             FirebaseAuthService.sendPasswordResetEmail(username);
             // alert("sent the password reset email");
-            toast.info("Your password has been reset !  ")
+            toast.info("Your password has been reset !  ");
         } catch (error) {
-
             toast.error(` Email unknown !  `, {
                 autoClose: 2000,
                 theme: "colored",
                 closeOnClick: true,
                 pauseOnHover: false,
             });
-        
+
             return;
-           
         }
     };
 
