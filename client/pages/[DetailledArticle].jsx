@@ -13,7 +13,7 @@ export default function DetailledArticle() {
 
     const [article, setArticle] = useState({});
 
-    console.log("ARTICLE", article.image);
+
 
     useEffect(() => {
         Axios.put("http://localhost:3001/fetchOneArticle", {

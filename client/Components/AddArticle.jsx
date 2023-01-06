@@ -57,7 +57,7 @@ export default function AddArticle() {
                     setDate(undefined);
                     setTempoDisplayImages([]);
                     setImageUrls([]);
-                    setImageUpload(imageUrls.length = 0);
+                    setImageUpload((imageUrls.length = 0));
                 } catch (error) {
                     console.log(error);
                 }
@@ -86,6 +86,15 @@ export default function AddArticle() {
         }
     };
 
+
+
+    const countLetters = (cnt) => {
+        if (cnt.length > -1) {
+            const value = 70 - cnt.length;
+            return value;
+        }
+    };
+  
     return (
         <div>
             <form className={css.form_container}>
@@ -107,8 +116,9 @@ export default function AddArticle() {
                     />
                 </div>
                 <div className={`${css.input} ${css.description_textarea}`}>
-                    <label> Description</label>
+                    <label> Description ({countLetters(description)}) </label>
                     <textarea
+                        maxlength="70"
                         onChange={(e) => setDescription(e.target.value)}
                         value={description}
                     ></textarea>
