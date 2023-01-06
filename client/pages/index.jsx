@@ -23,7 +23,7 @@ export default function Home() {
     };
 
     const toaster = () => {
-        toast.success(`Bye} `, {
+        toast.success(`Bye `, {
             autoClose: 2000,
             theme: "colored",
             closeOnClick: true,
@@ -55,11 +55,7 @@ export default function Home() {
                     <button> All Articles</button>
                 </Link>
 
-            {/* <ToastContainer> */}
-                <div>
-                    <button onClick={() => toaster()}> test toast</button>
-                </div>
-            {/* </ToastContainer> */}
+          
         </div>
     );
 }

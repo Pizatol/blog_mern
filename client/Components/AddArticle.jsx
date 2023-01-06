@@ -4,6 +4,8 @@ import Axios from "Axios";
 import Button_main from "./Buttons/Button_main";
 import Input_image from "./Input_image";
 import formattedDate from "./formattedDate";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AddArticle() {
     const [title, setTitle] = useState("");
@@ -20,11 +22,12 @@ export default function AddArticle() {
     // **********************
     // console.log("IMG URL", imageUrls);
 
-
     const addArticle = async (e) => {
         e.preventDefault();
 
         const dateFormated = formattedDate();
+
+        console.log(imageUrls);
 
         if (
             title !== "" &&
@@ -39,39 +42,44 @@ export default function AddArticle() {
                 author: author,
                 date: dateFormated,
                 image: imageUrls,
-            })
-                .then(() => {
-                    try {
-                        alert("Yeah it worked");
-                        setTitle("");
-                        setDescription("");
-                        setText("");
-                        setDate(undefined);
-                        setTempoDisplayImages([]);
-                        setImageUrls([]);
-                        setImageUpload([])
-                    } catch (error) {
-                        console.log(error);
-                    }
-                })
-                .then((response) => {
-                    try {
-                        setArticlesList([
-                            ...articlesList,
-                            {
-                                title: title,
-                                description: description,
-                                text: text,
-                                author: author,
-                                date: dateFormated,
-                                image: imageUrls,
-                                
-                            },
-                        ]);
-                    } catch (error) {
-                        console.log(error);
-                    }
-                });
+            }).then(() => {
+                try {
+                    toast.success(`Article uploaded ! `, {
+                        autoClose: 2000,
+                        theme: "colored",
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                    });
+                    setTitle("");
+                    setAuthor("");
+                    setDescription("");
+                    setText("");
+                    setDate(undefined);
+                    setTempoDisplayImages([]);
+                    setImageUrls([]);
+                    setImageUpload(imageUrls.length = 0);
+                } catch (error) {
+                    console.log(error);
+                }
+            });
+            // .then((response) => {
+            //     try {
+            //         setArticlesList([
+            //             ...articlesList,
+            //             {
+            //                 title: title,
+            //                 description: description,
+            //                 text: text,
+            //                 author: author,
+            //                 date: dateFormated,
+            //                 image: imageUrls,
+
+            //             },
+            //         ]);
+            //     } catch (error) {
+            //         console.log(error);
+            //     }
+            // });
         } else {
             alert("Please complete the form");
             return;
@@ -117,8 +125,6 @@ export default function AddArticle() {
                     <Input_image
                         imageUrls={imageUrls}
                         setImageUrls={setImageUrls}
-                    
-                    
                         imageUpload={imageUpload}
                         setImageUpload={setImageUpload}
                     />

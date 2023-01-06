@@ -15,15 +15,13 @@ import css from "../styles/Components/Input_image.module.scss";
 export default function Input_image({
     imageUrls,
     setImageUrls,
- 
-    imageUpload, setImageUpload
+    imageUpload,
+    setImageUpload,
 }) {
     // const [imageUpload, setImageUpload] = useState([]);
     // const [imageUrls, setImageUrls] = useState([]);
 
     const imagesListRef = ref(storage, "images/");
-
-
 
     // UPLOAD
 
@@ -34,8 +32,6 @@ export default function Input_image({
         const imageRef = ref(storage, `images/${name}`);
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
-             
-
                 setImageUrls((prev) => [...prev, { url: url, name: name }]);
             });
         });
@@ -46,42 +42,40 @@ export default function Input_image({
     // DELETE
     const deleteImg = (e) => {
         const imageSelectRef = ref(storage, `/images/${e.name}`);
+
+     
         deleteObject(imageSelectRef)
             .then(() => {
-                const filterArr = imageUpload.filter(
+                const filterArr = imageUrls.filter(
                     (item) => item.name !== e.name
                 );
-                setImageUpload(filterArr);
+                
+                setImageUrls(filterArr);
             })
             .catch((error) => {
                 console.log(error.message);
             });
     };
 
-    // useEffect(() => {
-    //     listAll(imagesListRef).then((response) => {
-    //         response.items.forEach((item) => {
-    //             getDownloadURL(item).then((url) => {
-    //                 setTempoDisplayImages((prev) => [...prev, url]);
-    //                 setImageUrls((prev) => [...prev, url]);
-    //             });
-    //         });
-    //     });
-    // }, []);
-
     return (
         <div>
-            <input
-                type="file"
-                onChange={(event) => {
-                    // IMAGEUPLOAD
-                    setImageUpload(event.target.files[0]);
-                }}
-            />
-            <button type="button" onClick={uploadFile}>
-                {" "}
-                Upload Image
-            </button>
+        {imageUrls.length <= 2 ? (
+
+            <div>
+                <input
+                    type="file"
+                    onChange={(event) => {
+                        // IMAGEUPLOAD
+                        setImageUpload(event.target.files[0]);
+                    }}
+                />
+                <button type="button" onClick={uploadFile}>
+                    {" "}
+                    Upload Image
+                </button>
+            </div>
+         ) : ""}
+          
 
             <div className={css.images_container}>
                 {imageUrls

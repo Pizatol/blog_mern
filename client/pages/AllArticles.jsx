@@ -36,6 +36,7 @@ export default function AllArticles() {
                         id={item._id}
                         author={item.author}
                         date={item.date}
+                        image = {item.image}
                         key={index}
                     />
                 ))}
