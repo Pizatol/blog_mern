@@ -18,7 +18,7 @@ export default function Article_mini({
 
     const first_preview_image = image[0].url;
 
-    console.log(first_preview_image.length);
+   
 
     return (
         <div className={css.global_container}>

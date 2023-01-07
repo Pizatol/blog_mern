@@ -13,8 +13,6 @@ export default function DetailledArticle() {
 
     const [article, setArticle] = useState({});
 
-
-
     useEffect(() => {
         Axios.put("http://localhost:3001/fetchOneArticle", {
             id: slugID,
@@ -59,6 +57,9 @@ export default function DetailledArticle() {
                                       src={img.url}
                                       alt="image"
                                       fill
+                                      sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
                                   />
                               </div>
                           ))

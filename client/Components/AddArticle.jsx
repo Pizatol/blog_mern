@@ -6,6 +6,7 @@ import Input_image from "./Input_image";
 import formattedDate from "./formattedDate";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { setIndexConfiguration } from "firebase/firestore";
 
 export default function AddArticle() {
     const [title, setTitle] = useState("");
@@ -94,6 +95,8 @@ export default function AddArticle() {
             return value;
         }
     };
+
+
   
     return (
         <div>
