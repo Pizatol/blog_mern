@@ -5,6 +5,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const ArticleModel = require("./Models/model");
+const CommentaryModel = require("./Models/CommentaryModel");
 
 dotenv.config();
 
@@ -17,12 +18,14 @@ const connectDB = async () => {
         const conn = mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
         });
+
         console.log(`mongo is running`);
     } catch (error) {
         console.error(`Error: ${error} `);
         process.exit(1);
     }
 };
+
 
 connectDB();
 
@@ -51,6 +54,7 @@ app.put("/fetchOneArticle", async (req, res) => {
     });
 });
 
+
 // ADD ARTICLE
 app.post("/addArticle", async (req, res) => {
     const description = req.body.description;
@@ -68,16 +72,39 @@ app.post("/addArticle", async (req, res) => {
         date: date,
         author: author,
         image: image,
-        commentaryID : commentaryID
+        commentaryID: commentaryID,
     });
 
     await article.save();
     res.send("Success");
 });
 
+// ADD COMMENTARY
+app.post("/NewCommentary", async (req, res) => {
+    const time = req.body.time;
+    const comID = req.body.comID;
+    const commentaryText = req.body.commentary;
+    const pseudo = req.body.pseudo;
+    const articleID = req.body.articleID;
+
+    console.log("ok");
+
+    const commentaire = new CommentaryModel({
+        time: time,
+        comID: comID,
+        commentaryText: commentaryText,
+        pseudo: pseudo,
+        articleID: articleID,
+    });
+
+
+    await commentaire.save();
+    res.send("Success");
+});
+
 // DELETE
 app.delete("/delete/:id", async (req, res) => {
-    const id = req.params.id
+    const id = req.params.id;
     await ArticleModel.findByIdAndRemove(id).exec();
     res.send("item deleted");
 });

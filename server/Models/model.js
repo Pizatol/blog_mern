@@ -15,22 +15,25 @@ const ArticleSchema = new Schema({
         type: String,
         required: true,
     },
-    date : {
-        type : String,
-        required: true
-    }, 
-    author : {
-        type : String,
-        required : true
+    date: {
+        type: String,
+        required: true,
     },
-    image : {
-        type : Array,
-        required : false
+    author: {
+        type: String,
+        required: true,
     },
-    commentaryID : {
-        type : String,
-        required : true
-    }
+    image: {
+        type: Array,
+        required: true,
+    },
+
 });
+// module.exports = ArticleModel;
+
+
 const ArticleModel = mongoose.model("Articles", ArticleSchema);
-module.exports = ArticleModel;
+
+
+module.exports = ArticleModel ;
+

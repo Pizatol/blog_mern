@@ -47,4 +47,19 @@
   -o-object-fit: cover;
      object-fit: cover;
   overflow: hidden;
+}
+
+.commentary_section {
+  max-width: 1200px;
+  width: auto;
+  height: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #f4f4f4;
+  margin: 50px auto 0;
+}
+.commentary_section input {
+  height: 50px;
+  width: 100%;
+  border: 1px solid red;
 }/*# sourceMappingURL=DetailledArticle.module.css.map */

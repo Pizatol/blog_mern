@@ -6,9 +6,8 @@ import Input_image from "./Input_image";
 import formattedDate from "./formattedDate";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {v4} from 'uuid'
+import { v4 } from "uuid";
 import { useRouter } from "next/router";
-
 
 export default function AddArticle() {
     const [title, setTitle] = useState("");
@@ -25,17 +24,14 @@ export default function AddArticle() {
     // **********************
     // console.log("IMG URL", imageUrls);
 
-    const router = useRouter()
-
-
+    const router = useRouter();
 
     const addArticle = async (e) => {
         e.preventDefault();
 
         const dateFormated = formattedDate();
-       
-        const commentaryID = v4()
 
+        const commentaryID = v4();
 
         if (
             title !== "" &&
@@ -50,32 +46,31 @@ export default function AddArticle() {
                 author: author,
                 date: dateFormated,
                 image: imageUrls,
-                commentaryID : commentaryID
-
-            }).then(() => {
-                try {
-                    toast.success(`Article uploaded ! `, {
-                        autoClose: 2000,
-                        theme: "colored",
-                        closeOnClick: true,
-                        pauseOnHover: false,
-                    });
-                    setTitle("");
-                    setAuthor("");
-                    setDescription("");
-                    setText("");
-                    setDate(undefined);
-                    setTempoDisplayImages([]);
-                    setImageUrls([]);
-                    setImageUpload([]);
-
-                    
-                } catch (error) {
-                    console.log(error);
-                }
-            }).then(() => {
-                router.push('/AllArticles')
+                commentaryID: commentaryID,
             })
+                .then(() => {
+                    try {
+                        toast.success(`Article uploaded ! `, {
+                            autoClose: 2000,
+                            theme: "colored",
+                            closeOnClick: true,
+                            pauseOnHover: false,
+                        });
+                        setTitle("");
+                        setAuthor("");
+                        setDescription("");
+                        setText("");
+                        setDate(undefined);
+                        setTempoDisplayImages([]);
+                        setImageUrls([]);
+                        setImageUpload([]);
+                    } catch (error) {
+                        console.log(error);
+                    }
+                })
+                .then(() => {
+                    router.push("/AllArticles");
+                });
             // .then((response) => {
             //     try {
             //         setArticlesList([
@@ -100,8 +95,6 @@ export default function AddArticle() {
         }
     };
 
-
-
     const countLetters = (cnt) => {
         if (cnt.length > -1) {
             const value = 70 - cnt.length;
@@ -109,8 +102,6 @@ export default function AddArticle() {
         }
     };
 
-
-  
     return (
         <div>
             <form className={css.form_container}>

@@ -29,7 +29,11 @@ export default function Article_mini({
 }) {
     const router = useRouter();
     const imagesListRef = ref(storage, "images/");
-    const first_preview_image = image[0].url;
+    let first_preview_image = [];
+
+    if (image.length > 0) {
+        first_preview_image = image[0].url;
+    }
 
     const handleDelete = (id) => {
         for (let e of image) {
@@ -55,7 +59,7 @@ export default function Article_mini({
     return (
         <div className={css.global_container}>
             <div className={css.left_part_card}>
-                {first_preview_image.length !== 1 ? (
+                {first_preview_image.length > 0 ? (
                     <Image
                         className={css.image_card}
                         src={first_preview_image}
