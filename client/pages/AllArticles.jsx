@@ -21,6 +21,13 @@ export default function AllArticles() {
         });
     }, []);
 
+    // DELETE
+    const handleDelete = (id) => {
+        Axios.delete(`http://localhost:3001/delete/${id}`).then(() => {
+            setAllArticles(allArticles.filter((val) => val._id !== id));
+        });
+    };
+
     return (
         <div className={css.global_container}>
             <Link href={"/"}>
@@ -38,6 +45,8 @@ export default function AllArticles() {
                         date={item.date}
                         image = {item.image}
                         key={index}
+                        allArticles = {allArticles}
+                        setAllArticles = {setAllArticles}
                     />
                 ))}
             </div>

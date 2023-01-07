@@ -26,6 +26,10 @@ const ArticleSchema = new Schema({
     image : {
         type : Array,
         required : false
+    },
+    commentaryID : {
+        type : String,
+        required : true
     }
 });
 const ArticleModel = mongoose.model("Articles", ArticleSchema);

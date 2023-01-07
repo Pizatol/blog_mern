@@ -6,7 +6,9 @@ import Input_image from "./Input_image";
 import formattedDate from "./formattedDate";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { setIndexConfiguration } from "firebase/firestore";
+import {v4} from 'uuid'
+import { useRouter } from "next/router";
+
 
 export default function AddArticle() {
     const [title, setTitle] = useState("");
@@ -23,12 +25,17 @@ export default function AddArticle() {
     // **********************
     // console.log("IMG URL", imageUrls);
 
+    const router = useRouter()
+
+
+
     const addArticle = async (e) => {
         e.preventDefault();
 
         const dateFormated = formattedDate();
+       
+        const commentaryID = v4()
 
-        console.log(imageUrls);
 
         if (
             title !== "" &&
@@ -43,6 +50,8 @@ export default function AddArticle() {
                 author: author,
                 date: dateFormated,
                 image: imageUrls,
+                commentaryID : commentaryID
+
             }).then(() => {
                 try {
                     toast.success(`Article uploaded ! `, {
@@ -58,11 +67,15 @@ export default function AddArticle() {
                     setDate(undefined);
                     setTempoDisplayImages([]);
                     setImageUrls([]);
-                    setImageUpload((imageUrls.length = 0));
+                    setImageUpload([]);
+
+                    
                 } catch (error) {
                     console.log(error);
                 }
-            });
+            }).then(() => {
+                router.push('/AllArticles')
+            })
             // .then((response) => {
             //     try {
             //         setArticlesList([

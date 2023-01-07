@@ -59,6 +59,7 @@ app.post("/addArticle", async (req, res) => {
     const date = req.body.date;
     const author = req.body.author;
     const image = req.body.image;
+    const commentaryID = req.body.commentaryID;
 
     const article = new ArticleModel({
         description: description,
@@ -67,10 +68,18 @@ app.post("/addArticle", async (req, res) => {
         date: date,
         author: author,
         image: image,
+        commentaryID : commentaryID
     });
 
     await article.save();
     res.send("Success");
+});
+
+// DELETE
+app.delete("/delete/:id", async (req, res) => {
+    const id = req.params.id
+    await ArticleModel.findByIdAndRemove(id).exec();
+    res.send("item deleted");
 });
 
 app.listen(process.env.PORT);
