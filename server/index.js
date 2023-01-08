@@ -4,8 +4,7 @@ const cors = require("cors");
 
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const {ArticleModel, CommentaryModel} = require("./Models/model");
-
+const { ArticleModel, CommentaryModel } = require("./Models/model");
 
 dotenv.config();
 
@@ -17,7 +16,6 @@ const connectDB = async () => {
     try {
         const conn = mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
-        
         });
 
         console.log(`mongo is running`);
@@ -85,8 +83,7 @@ app.post("/NewCommentary", async (req, res) => {
     const commentaryText = req.body.commentary;
     const pseudo = req.body.pseudo;
     const articleID = req.body.articleID;
-
-    console.log("ok", commentaryText );
+    const commentaryIndex = req.body.commentaryIndex
 
     const commentaire = new CommentaryModel({
         time: time,
@@ -94,18 +91,16 @@ app.post("/NewCommentary", async (req, res) => {
         commentaryText: commentaryText,
         pseudo: pseudo,
         articleID: articleID,
+        commentaryIndex : commentaryIndex
     });
-
-
-    
+    console.log(time);
     await commentaire.save();
     res.send("Success");
 });
 
 // FETCH COMMENTARIES
 app.put("/fetchCommentaries", async (req, res) => {
-
-    CommentaryModel.find( {}, (error, result) => {
+    CommentaryModel.find({}, (error, result) => {
         if (error) {
             res.send(error);
         } else {
@@ -113,9 +108,6 @@ app.put("/fetchCommentaries", async (req, res) => {
         }
     });
 });
-
-
-
 
 // DELETE
 app.delete("/delete/:id", async (req, res) => {

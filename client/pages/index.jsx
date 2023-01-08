@@ -9,6 +9,7 @@ import FirebaseAuthService from "../Firebase/FirebaseAuthService";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 export default function Home() {
     const { user, setUser, formOn, setFormOn, userName, setUserName } =
@@ -31,6 +32,8 @@ export default function Home() {
         });
     };
 
+    const router = useRouter()
+    router.push('/AllArticles')
     return (
         <div className={css.container}>
                 <Head>

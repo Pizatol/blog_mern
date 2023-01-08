@@ -1,5 +1,5 @@
 import css from "../styles/Components/NavBar.module.scss";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { LoginContext } from "../context/LoginContext";
 import FirebaseAuthService from "../Firebase/FirebaseAuthService";
 
@@ -9,7 +9,15 @@ import { useRouter } from "next/router";
 export default function NavBar() {
     const { user, setUser, formOn, setFormOn, userName, setUserName } =
         useContext(LoginContext);
-    FirebaseAuthService.subscribeToAuthChanges(setUser);
+
+   
+
+    useEffect(() => {
+        FirebaseAuthService.subscribeToAuthChanges(setUser);
+        setUserName(userName)
+    }, [user, userName])
+
+
 
     const router = useRouter()
 

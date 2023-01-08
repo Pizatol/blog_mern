@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import css from "../styles/Pages/AllArticles.module.scss";
 import Axios from "Axios";
 import Link from "next/link";
 import Article_mini from "../Components/Article_mini";
+import { LoginContext } from "../context/LoginContext";
 
 import formattedDate from "../Components/formattedDate";
 
 export default function AllArticles() {
+
+    const { user, setUser, formOn, setFormOn, userName, setUserName } =
+    useContext(LoginContext);
+
     const [allArticles, setAllArticles] = useState([]);
 
     const [date, setDate] = useState(undefined);
@@ -33,6 +38,13 @@ export default function AllArticles() {
             <Link href={"/"}>
                 <button>Retour</button>
             </Link>
+            {user ? (
+                    <Link href={"/NewArticle"}>
+                        <button> New article</button>
+                    </Link>
+                ) : (
+                    ""
+                )}
 
             <div className={css.articles_container}>
                 {allArticles.map((item, index) => (

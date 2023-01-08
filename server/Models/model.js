@@ -16,7 +16,8 @@ const ArticleSchema = new Schema({
         // required: true,
     },
     date: {
-        type: String,
+        type: Date,
+        default: Date.now,
         // required: true,
     },
     author: {
@@ -27,15 +28,15 @@ const ArticleSchema = new Schema({
         type: Array,
         // required: true,
     },
-    commentaryID : {
-        type : String
-    }
+    commentaryID: {
+        type: String,
+    },
 });
-
 
 const CommentarySchema = new Schema({
     time: {
         type: String,
+      
         // required: true,
     },
     comID: {
@@ -54,6 +55,9 @@ const CommentarySchema = new Schema({
         type: String,
         // required: true,
     },
+    commentaryIndex : {
+        type : Number
+    }
 });
 
 const ArticleModel = mongoose.model("Articles", ArticleSchema);

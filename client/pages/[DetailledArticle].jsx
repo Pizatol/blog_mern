@@ -10,6 +10,7 @@ import { v4 } from "uuid";
 import { LoginContext } from "../context/LoginContext";
 import { formattedDateWithSeconds } from "../Components/formatted_precise_date";
 import img from "../public/assets/images/img00.jpg";
+import FirebaseAuthService from "../Firebase/FirebaseAuthService";
 
 export default function DetailledArticle() {
     const { user, setUser, userName, setUserName } = useContext(LoginContext);
@@ -23,54 +24,63 @@ export default function DetailledArticle() {
     const [commentaries, setCommentaries] = useState([]);
     const [commentary, setCommentary] = useState("");
 
+    const formaDateTime = () => {
+      
+    };
+
+    // LOG
+   console.log(commentaries.length);
+
+// ******************
+//     TRIER COMMENTAIRES AVEC LE commentaryIndex
+// var numArray = [140000, 104, 99, 12, 50 , 300, 3, 5, 6];
+// numArray.sort(function(a, b) {
+//   return a - b;
+// });
+// console.log(numArray);
+
     useEffect(() => {
         Axios.put("http://localhost:3001/fetchOneArticle", {
             id: slugID,
-        })
-            .then((response) => {
-                try {
-                    setArticle(response.data);
-                   
-                } catch (error) {
-                    console.log(error);
-                }
-            })
-            
-            Axios.put("http://localhost:3001/fetchCommentaries", {
-                id: slugID,
-            })
-                .then((response) => {
-                    try {
-                        // setCommentaries(response.data);
+        }).then((response) => {
+            try {
+                setArticle(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        });
 
-                        // EN COURS !!!
-                        const filterCommentaries = response.data.filter(
-                            (item) => item.articleID === articleID
-                        );
+        Axios.put("http://localhost:3001/fetchCommentaries", {
+            id: slugID,
+        }).then((response) => {
+            try {
+                // setCommentaries(response.data);
 
-                        setCommentaries(filterCommentaries)
-                    } catch (error) {
-                        console.log(error);
-                    }
-                })
-               
-    }, []);
+                // EN COURS !!!
+                const filterCommentaries = response.data.filter(
+                    (item) => item.articleID === articleID
+                );
+
+                setCommentaries(filterCommentaries);
+            } catch (error) {
+                console.log(error);
+            }
+        });
+    }, [ commentary]);
 
     const addCommentary = async () => {
-        const time = new Date();
-
+        const time = formattedDateWithSeconds();
         const comID = v4();
+        let pseudo = userName;
+        const commentaryIndex = commentaries.length + 1
 
-        let pseudo = "michel";
-
-        if(commentary.length < 3){
+        if (commentary.length < 3) {
             toast.info(` Please write a real comment! `, {
                 autoClose: 2000,
                 theme: "colored",
                 closeOnClick: true,
                 pauseOnHover: false,
             });
-
             return;
         }
 
@@ -84,6 +94,7 @@ export default function DetailledArticle() {
             commentary: commentary,
             pseudo: pseudo,
             articleID: articleID,
+            commentaryIndex : commentaryIndex
         }).then(() => {
             try {
                 toast.success(`Commentary uploaded ! `, {
@@ -112,6 +123,7 @@ export default function DetailledArticle() {
                     />
                 </div>
                 <div className={css.data_container}>
+                    <p>{article.author} </p>
                     <h4> {article.date}</h4>
 
                     <h1>{article.title} </h1>
@@ -155,12 +167,18 @@ export default function DetailledArticle() {
                 </label>
             </div>
 
-
             <div className={css.commentaries_container}>
                 {commentaries.map((com, index) => (
                     <div className={css.commentary} key={index}>
-                    <h3> {com.pseudo} {com.time} </h3>
+                        <h3>
+                            {" "}
+                            {com.pseudo} {com.time}{" "}
+                        </h3>
                         <p> {com.commentaryText} </p>
+                        <button onClick={() => formaDateTime(com.time)}>
+                            {" "}
+                            TEST
+                        </button>
                     </div>
                 ))}
             </div>
@@ -169,6 +187,9 @@ export default function DetailledArticle() {
                 <Link href={"/"}>
                     <button> Retour</button>
                 </Link>
+            </div>
+            <div>
+                <button onClick={formaDateTime}> TEST</button>
             </div>
         </div>
     );
