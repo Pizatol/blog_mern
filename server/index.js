@@ -86,7 +86,7 @@ app.post("/NewCommentary", async (req, res) => {
     const pseudo = req.body.pseudo;
     const articleID = req.body.articleID;
 
-    console.log("ok");
+    console.log("ok", commentaryText );
 
     const commentaire = new CommentaryModel({
         time: time,
@@ -97,9 +97,23 @@ app.post("/NewCommentary", async (req, res) => {
     });
 
 
+    
     await commentaire.save();
     res.send("Success");
 });
+
+// FETCH COMMENTARIES
+app.put("/fetchCommentaries", async (req, res) => {
+
+    CommentaryModel.find( {}, (error, result) => {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(result);
+        }
+    });
+});
+
 
 
 

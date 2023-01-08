@@ -4,9 +4,11 @@ import Axios from "Axios";
 import Image from "next/image";
 import Link from "next/link";
 import css from "../styles/Pages/DetailledArticle.module.scss";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { v4 } from "uuid";
 import { LoginContext } from "../context/LoginContext";
+import { formattedDateWithSeconds } from "../Components/formatted_precise_date";
 import img from "../public/assets/images/img00.jpg";
 
 export default function DetailledArticle() {
@@ -18,27 +20,59 @@ export default function DetailledArticle() {
     const articleID = String(slugID);
 
     const [article, setArticle] = useState({});
-
+    const [commentaries, setCommentaries] = useState([]);
     const [commentary, setCommentary] = useState("");
 
     useEffect(() => {
         Axios.put("http://localhost:3001/fetchOneArticle", {
             id: slugID,
-        }).then((response) => {
-            try {
-                setArticle(response.data);
-            } catch (error) {
-                console.log(error);
-            }
-        });
-        
+        })
+            .then((response) => {
+                try {
+                    setArticle(response.data);
+                   
+                } catch (error) {
+                    console.log(error);
+                }
+            })
+            
+            Axios.put("http://localhost:3001/fetchCommentaries", {
+                id: slugID,
+            })
+                .then((response) => {
+                    try {
+                        // setCommentaries(response.data);
+
+                        // EN COURS !!!
+                        const filterCommentaries = response.data.filter(
+                            (item) => item.articleID === articleID
+                        );
+
+                        setCommentaries(filterCommentaries)
+                    } catch (error) {
+                        console.log(error);
+                    }
+                })
+               
     }, []);
 
     const addCommentary = async () => {
         const time = new Date();
-        console.log(time);
+
         const comID = v4();
+
         let pseudo = "michel";
+
+        if(commentary.length < 3){
+            toast.info(` Please write a real comment! `, {
+                autoClose: 2000,
+                theme: "colored",
+                closeOnClick: true,
+                pauseOnHover: false,
+            });
+
+            return;
+        }
 
         if (user === null && userName === null) {
             alert("Please Log In or Sign Up before commenting !");
@@ -52,7 +86,13 @@ export default function DetailledArticle() {
             articleID: articleID,
         }).then(() => {
             try {
-                alert("Commentaire Added");
+                toast.success(`Commentary uploaded ! `, {
+                    autoClose: 2000,
+                    theme: "colored",
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                });
+                console.log("commentaire added !");
                 setCommentary("");
             } catch (error) {
                 console.log(error.message);
@@ -113,6 +153,16 @@ export default function DetailledArticle() {
                         Commenter
                     </button>
                 </label>
+            </div>
+
+
+            <div className={css.commentaries_container}>
+                {commentaries.map((com, index) => (
+                    <div className={css.commentary} key={index}>
+                    <h3> {com.pseudo} {com.time} </h3>
+                        <p> {com.commentaryText} </p>
+                    </div>
+                ))}
             </div>
 
             <div>

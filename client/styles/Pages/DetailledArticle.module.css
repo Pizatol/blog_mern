@@ -61,5 +61,19 @@
 .commentary_section input {
   height: 50px;
   width: 100%;
+}
+
+.commentaries_container {
+  max-width: 1200px;
+  width: auto;
+  height: auto;
+  background-color: #f4f4f4;
+  margin: 50px auto 0;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.commentary {
   border: 1px solid red;
+  margin: 10px 0;
 }/*# sourceMappingURL=DetailledArticle.module.css.map */

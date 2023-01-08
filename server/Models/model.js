@@ -42,7 +42,7 @@ const CommentarySchema = new Schema({
         type: String,
         // required: true,
     },
-    commentary: {
+    commentaryText: {
         type: String,
         // required: true,
     },
