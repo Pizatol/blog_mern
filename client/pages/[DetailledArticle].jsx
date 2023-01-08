@@ -15,6 +15,7 @@ export default function DetailledArticle() {
     const router = useRouter();
 
     const slugID = Object.values(router.query);
+    const articleID = String(slugID);
 
     const [article, setArticle] = useState({});
 
@@ -30,6 +31,7 @@ export default function DetailledArticle() {
                 console.log(error);
             }
         });
+        
     }, []);
 
     const addCommentary = async () => {
@@ -37,25 +39,19 @@ export default function DetailledArticle() {
         console.log(time);
         const comID = v4();
         let pseudo = "michel";
-        const articleID = String(slugID);
-        console.log("1");
 
-        if(user === null && userName === null){
-            alert('Please Log In or Sign Up before commenting !')
+        if (user === null && userName === null) {
+            alert("Please Log In or Sign Up before commenting !");
         }
-
-        console.log("2");
-      
 
         Axios.post("http://localhost:3001/NewCommentary", {
             time: time,
             comID: comID,
             commentary: commentary,
             pseudo: pseudo,
-            articleID: slugID,
+            articleID: articleID,
         }).then(() => {
             try {
-                console.log("3");
                 alert("Commentaire Added");
                 setCommentary("");
             } catch (error) {

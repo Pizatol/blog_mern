@@ -4,8 +4,8 @@ const cors = require("cors");
 
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const ArticleModel = require("./Models/model");
-const CommentaryModel = require("./Models/CommentaryModel");
+const {ArticleModel, CommentaryModel} = require("./Models/model");
+
 
 dotenv.config();
 
@@ -17,6 +17,7 @@ const connectDB = async () => {
     try {
         const conn = mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
+        
         });
 
         console.log(`mongo is running`);
@@ -25,7 +26,6 @@ const connectDB = async () => {
         process.exit(1);
     }
 };
-
 
 connectDB();
 
@@ -53,7 +53,6 @@ app.put("/fetchOneArticle", async (req, res) => {
         }
     });
 });
-
 
 // ADD ARTICLE
 app.post("/addArticle", async (req, res) => {
@@ -101,6 +100,8 @@ app.post("/NewCommentary", async (req, res) => {
     await commentaire.save();
     res.send("Success");
 });
+
+
 
 // DELETE
 app.delete("/delete/:id", async (req, res) => {
