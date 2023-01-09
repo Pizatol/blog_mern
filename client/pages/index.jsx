@@ -3,7 +3,7 @@ import Image from "next/image";
 import css from "../styles/Pages/Index.module.scss";
 import AddArticle from "../Components/AddArticle";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../context/LoginContext";
 import FirebaseAuthService from "../Firebase/FirebaseAuthService";
 
@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 export default function Home() {
     const { user, setUser, formOn, setFormOn, userName, setUserName } =
         useContext(LoginContext);
-
+        const router = useRouter()
     const toggleForm = () => {
         setFormOn(!formOn);
     };
@@ -32,8 +32,11 @@ export default function Home() {
         });
     };
 
-    const router = useRouter()
-    router.push('/AllArticles')
+    useEffect(() => {
+        router.push('/AllArticles')
+    }, []) 
+ 
+    
     return (
         <div className={css.container}>
                 <Head>

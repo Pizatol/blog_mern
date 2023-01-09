@@ -61,7 +61,8 @@ export default function DetailledArticle() {
                     (item) => item.articleID === articleID
                 );
 
-                setCommentaries(filterCommentaries);
+                setCommentaries(filterCommentaries.reverse());
+               
             } catch (error) {
                 console.log(error);
             }
