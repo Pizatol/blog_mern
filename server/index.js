@@ -93,7 +93,7 @@ app.post("/NewCommentary", async (req, res) => {
         articleID: articleID,
         commentaryIndex : commentaryIndex
     });
-    console.log(time);
+   
     await commentaire.save();
     res.send("Success");
 });

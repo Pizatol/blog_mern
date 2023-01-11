@@ -24,20 +24,18 @@ export default function DetailledArticle() {
     const [commentaries, setCommentaries] = useState([]);
     const [commentary, setCommentary] = useState("");
 
-    const formaDateTime = () => {
-      
-    };
+    const formaDateTime = () => {};
 
     // LOG
-   console.log(commentaries.length);
+    console.log(commentaries.length);
 
-// ******************
-//     TRIER COMMENTAIRES AVEC LE commentaryIndex
-// var numArray = [140000, 104, 99, 12, 50 , 300, 3, 5, 6];
-// numArray.sort(function(a, b) {
-//   return a - b;
-// });
-// console.log(numArray);
+    // ******************
+    //     TRIER COMMENTAIRES AVEC LE commentaryIndex
+    // var numArray = [140000, 104, 99, 12, 50 , 300, 3, 5, 6];
+    // numArray.sort(function(a, b) {
+    //   return a - b;
+    // });
+    // console.log(numArray);
 
     useEffect(() => {
         Axios.put("http://localhost:3001/fetchOneArticle", {
@@ -62,18 +60,17 @@ export default function DetailledArticle() {
                 );
 
                 setCommentaries(filterCommentaries.reverse());
-               
             } catch (error) {
                 console.log(error);
             }
         });
-    }, [ commentary]);
+    }, [commentary]);
 
     const addCommentary = async () => {
         const time = formattedDateWithSeconds();
         const comID = v4();
         let pseudo = userName;
-        const commentaryIndex = commentaries.length + 1
+        const commentaryIndex = commentaries.length + 1;
 
         if (commentary.length < 3) {
             toast.info(` Please write a real comment! `, {
@@ -95,7 +92,7 @@ export default function DetailledArticle() {
             commentary: commentary,
             pseudo: pseudo,
             articleID: articleID,
-            commentaryIndex : commentaryIndex
+            commentaryIndex: commentaryIndex,
         }).then(() => {
             try {
                 toast.success(`Commentary uploaded ! `, {
@@ -155,18 +152,22 @@ export default function DetailledArticle() {
                 </div>
             </div>
 
-            <div className={css.commentary_section}>
-                <label>
-                    <input
-                        onChange={(e) => setCommentary(e.target.value)}
-                        type="text"
-                        value={commentary}
-                    />
-                    <button onClick={addCommentary} type="button">
-                        Commenter
-                    </button>
-                </label>
-            </div>
+            {user ? (
+                <div className={css.commentary_section}>
+                    <label>
+                        <input
+                            onChange={(e) => setCommentary(e.target.value)}
+                            type="text"
+                            value={commentary}
+                        />
+                        <button onClick={addCommentary} type="button">
+                            Commenter
+                        </button>
+                    </label>
+                </div>
+            ) : (
+                ""
+            )}
 
             <div className={css.commentaries_container}>
                 {commentaries.map((com, index) => (
@@ -176,10 +177,7 @@ export default function DetailledArticle() {
                             {com.pseudo} {com.time}{" "}
                         </h3>
                         <p> {com.commentaryText} </p>
-                        <button onClick={() => formaDateTime(com.time)}>
-                            {" "}
-                            TEST
-                        </button>
+                       
                     </div>
                 ))}
             </div>
