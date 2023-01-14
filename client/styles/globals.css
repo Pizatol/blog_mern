@@ -4,7 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background-color: #494848;
+    background-color: var(--dark1);
 }
 
 a {
@@ -36,6 +36,7 @@ a {
   --maxWidth1 : 1800px; 
   --maxWidth2 : 1275px;
 
+  --dark0 : #0F0F0F;
   --dark1 : #2f2f2f;
   --dark2 : #4c4c4c ;
   --grey1 : #a19da0;

@@ -1,7 +1,7 @@
 .global_container {
     max-width: 1200px;
     width: auto;
-    height:auto;
+    height: auto;
 
     border-radius: 20px;
     overflow: hidden;
@@ -33,47 +33,84 @@
     justify-content: space-around;
     width: auto;
     height: auto;
-    
 }
 
 .image_container_mini {
-   
     position: relative;
     width: 400px;
     height: 300px;
-    margin: 10px 10px ;
- 
+    margin: 10px 10px;
 }
 .image {
     object-fit: cover;
-    overflow: hidden;  
-    
- 
+    overflow: hidden;
 }
+// COMMENTAIRES
 
 .commentary_section {
     max-width: 1200px;
     width: auto;
-    height:auto;
-    border-radius: 20px;
+    height: auto;
     overflow: hidden;
-    background-color: #f4f4f4;
     margin: 50px auto 0;
+}
 
+.commentary_section_label {
+    display: flex;
+    flex-direction: column;
+    
+    align-items: flex-end;
     input {
         height: 50px;
+        width: 100%;
+        background-color: var(--dark1);
+        border: none;
+        outline: none;
+        color: var(--white1);
+        font-size: var(--size0);
+        font-family: var(--DM);
+    }
+    input::placeholder {
+        color: var(--white1);
+    }
+    span {
+        position: relative;
+        display: block;
+        border: 1px solid transparent;    
+        width: 0%;
+        margin: auto;
+        transition: all 0.3s ease;
+    }
+
+    button {
+        width: 100px;
+        background-color: var(--dark1);
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+        padding: 10px 15px;
+        border: 1px solid var(--white1);
+        border-radius: 3px;
+        color: var(--white1); 
+        
+    }
+}
+
+.commentary_section:focus-within {
+    span {
+        position: relative;
+        display: block;
+        border: 1px solid var(--white1);
+        margin: auto;
         width: 100%;
        
     }
 }
 
-
-// COMMENTAIRES
-
 .commentaries_container {
     max-width: 1200px;
     width: auto;
-    height:auto;
+    height: auto;
     background-color: #f4f4f4;
     // border: 1px solid red;
     margin: 50px auto 0;
@@ -82,6 +119,5 @@
 }
 
 .commentary {
-    
     margin: 10px 0;
 }

@@ -40,7 +40,7 @@
   position: relative;
   width: 400px;
   height: 300px;
-  margin: 10px 5px;
+  margin: 10px 10px;
 }
 
 .image {
@@ -53,13 +53,59 @@
   max-width: 1200px;
   width: auto;
   height: auto;
-  border-radius: 20px;
   overflow: hidden;
-  background-color: #f4f4f4;
   margin: 50px auto 0;
 }
-.commentary_section input {
+
+.commentary_section_label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.commentary_section_label input {
   height: 50px;
+  width: 100%;
+  background-color: var(--dark1);
+  border: none;
+  outline: none;
+  color: var(--white1);
+  font-size: var(--size0);
+  font-family: var(--DM);
+}
+.commentary_section_label input::-moz-placeholder {
+  color: var(--white1);
+}
+.commentary_section_label input:-ms-input-placeholder {
+  color: var(--white1);
+}
+.commentary_section_label input::placeholder {
+  color: var(--white1);
+}
+.commentary_section_label span {
+  position: relative;
+  display: block;
+  border: 1px solid transparent;
+  width: 0%;
+  margin: auto;
+  transition: all 0.3s ease;
+}
+.commentary_section_label button {
+  width: 100px;
+  background-color: var(--dark1);
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  padding: 10px 15px;
+  border: 1px solid var(--white1);
+  border-radius: 3px;
+  color: var(--white1);
+}
+
+.commentary_section:focus-within span {
+  position: relative;
+  display: block;
+  border: 1px solid var(--white1);
+  margin: auto;
   width: 100%;
 }
 

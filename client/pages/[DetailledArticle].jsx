@@ -154,13 +154,20 @@ export default function DetailledArticle() {
 
             {user ? (
                 <div className={css.commentary_section}>
-                    <label>
+                
+                    <label className={css.commentary_section_label}>
                         <input
                             onChange={(e) => setCommentary(e.target.value)}
                             type="text"
                             value={commentary}
+                            placeholder="Ajouter un commentaire"
                         />
-                        <button onClick={addCommentary} type="button">
+                       <span className={css.commentary_section_bar} ></span>
+                        <button
+                            className={css.commentary_section_button}
+                            onClick={addCommentary}
+                            type="button"
+                        >
                             Commenter
                         </button>
                     </label>
@@ -177,7 +184,6 @@ export default function DetailledArticle() {
                             {com.pseudo} {com.time}{" "}
                         </h3>
                         <p> {com.commentaryText} </p>
-                       
                     </div>
                 ))}
             </div>
