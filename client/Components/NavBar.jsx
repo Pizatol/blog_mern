@@ -10,16 +10,17 @@ export default function NavBar() {
     const { user, setUser, formOn, setFormOn, userName, setUserName } =
         useContext(LoginContext);
 
-   
-
-    useEffect(() => {
+       
+        
+        useEffect(() => {
         FirebaseAuthService.subscribeToAuthChanges(setUser);
-        setUserName(userName)
-    }, [user, userName])
+
+        
+        setUserName(userName);
+    }, [user, setUser, userName]);
 
 
-
-    const router = useRouter()
+    const router = useRouter();
 
     const toggleForm = () => {
         setFormOn(!formOn);
@@ -28,7 +29,7 @@ export default function NavBar() {
     const logOut = () => {
         FirebaseAuthService.logoutUser();
         router.push("/");
-        console.log("OK LOG");
+
         toast.info(`Bye `, {
             autoClose: 1000,
             theme: "colored",

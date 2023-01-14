@@ -2,17 +2,18 @@
     max-width: 1200px;
     width: auto;
     height: auto;
-
     border-radius: 20px;
     overflow: hidden;
     background-color: #f4f4f4;
     margin: 100px auto 0;
 }
 
-.image_container {
+
+.image_container_upper {
     position: relative;
     width: 100%;
     height: 400px;
+  
 }
 .image_card {
     object-fit: cover;
@@ -28,11 +29,13 @@
 }
 
 .images_container {
-    position: relative;
+    
     display: flex;
     justify-content: space-around;
-    width: auto;
+    position: relative;
+    width: 100%;
     height: auto;
+    padding-bottom: 50px;
 }
 
 .image_container_mini {
@@ -45,7 +48,7 @@
     object-fit: cover;
     overflow: hidden;
 }
-// COMMENTAIRES
+// COMMENTAIRES INPUT
 
 .commentary_section {
     max-width: 1200px;
@@ -107,11 +110,13 @@
     }
 }
 
+// COMMENTAIRES
+
 .commentaries_container {
     max-width: 1200px;
     width: auto;
     height: auto;
-    background-color: #f4f4f4;
+    // background-color: #f4f4f4;
     // border: 1px solid red;
     margin: 50px auto 0;
     border-radius: 20px;
@@ -119,5 +124,22 @@
 }
 
 .commentary {
+    //  background-color: #f4f4f4;
     margin: 10px 0;
+    padding:  10px ;
+    color: var(--white1);
+    font-size: var(--size0);
+    font-family: var(--DM);
+
+    h3 {
+        font-size: var(--size1);
+        margin-bottom: 5px;
+    }
+    span {
+        font-size: var(--size0);
+    }
+    p {
+        margin: 0;
+        padding: 0;
+    }
 }

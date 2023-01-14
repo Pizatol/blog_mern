@@ -18,7 +18,7 @@ export const formattedDateWithSeconds = () => {
         minutes +
         ":" +
         seconds;
-    const formatDate = day + "/" + month + "/" + year;
+  
 
     return formattedDate;
 };

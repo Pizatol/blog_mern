@@ -23,11 +23,12 @@ export default function DetailledArticle() {
     const [article, setArticle] = useState({});
     const [commentaries, setCommentaries] = useState([]);
     const [commentary, setCommentary] = useState("");
+    const [loading, setLoading] = useState(false)
 
-    const formaDateTime = () => {};
+   
 
     // LOG
-    console.log(commentaries.length);
+  console.log(article.date);
 
     // ******************
     //     TRIER COMMENTAIRES AVEC LE commentaryIndex
@@ -43,6 +44,7 @@ export default function DetailledArticle() {
         }).then((response) => {
             try {
                 setArticle(response.data);
+                setLoading(true)
             } catch (error) {
                 console.log(error);
             }
@@ -52,9 +54,7 @@ export default function DetailledArticle() {
             id: slugID,
         }).then((response) => {
             try {
-                // setCommentaries(response.data);
-
-                // EN COURS !!!
+               
                 const filterCommentaries = response.data.filter(
                     (item) => item.articleID === articleID
                 );
@@ -64,7 +64,7 @@ export default function DetailledArticle() {
                 console.log(error);
             }
         });
-    }, [commentary]);
+    }, [commentary, setLoading]);
 
     const addCommentary = async () => {
         const time = formattedDateWithSeconds();
@@ -109,16 +109,27 @@ export default function DetailledArticle() {
         });
     };
 
+    
+
     return (
         <div>
             <div className={css.global_container}>
-                <div className={css.image_container}>
-                    <Image
-                        className={css.image_card}
-                        src={img}
-                        alt="image blog"
-                        fill
-                    />
+                <div className={css.image_container_upper}>
+                    {loading === true && article.image.length > 0 ? (
+                        <Image
+                            className={css.image_card}
+                            src={article.image[0].url}
+                            alt="image blog"
+                            fill
+                        />
+                    ) : (
+                        <Image
+                            className={css.image_card}
+                            src={img}
+                            alt="image blog"
+                            fill
+                        />
+                    )}
                 </div>
                 <div className={css.data_container}>
                     <p>{article.author} </p>
@@ -154,7 +165,6 @@ export default function DetailledArticle() {
 
             {user ? (
                 <div className={css.commentary_section}>
-                
                     <label className={css.commentary_section_label}>
                         <input
                             onChange={(e) => setCommentary(e.target.value)}
@@ -162,7 +172,7 @@ export default function DetailledArticle() {
                             value={commentary}
                             placeholder="Ajouter un commentaire"
                         />
-                       <span className={css.commentary_section_bar} ></span>
+                        <span className={css.commentary_section_bar}></span>
                         <button
                             className={css.commentary_section_button}
                             onClick={addCommentary}
@@ -181,7 +191,7 @@ export default function DetailledArticle() {
                     <div className={css.commentary} key={index}>
                         <h3>
                             {" "}
-                            {com.pseudo} {com.time}{" "}
+                            {com.pseudo} <span> ( {com.time} )</span>{" "}
                         </h3>
                         <p> {com.commentaryText} </p>
                     </div>
@@ -192,9 +202,6 @@ export default function DetailledArticle() {
                 <Link href={"/"}>
                     <button> Retour</button>
                 </Link>
-            </div>
-            <div>
-                <button onClick={formaDateTime}> TEST</button>
             </div>
         </div>
     );

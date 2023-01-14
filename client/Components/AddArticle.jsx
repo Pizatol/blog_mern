@@ -8,6 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { v4 } from "uuid";
 import { useRouter } from "next/router";
+import { formattedDateWithSeconds } from "./formatted_precise_date";
 
 export default function AddArticle() {
     const [title, setTitle] = useState("");
@@ -30,6 +31,7 @@ export default function AddArticle() {
         e.preventDefault();
 
         const dateFormated = formattedDate();
+        const time = formattedDateWithSeconds()
 
         const commentaryID = v4();
 
@@ -44,7 +46,7 @@ export default function AddArticle() {
                 description: description,
                 text: text,
                 author: author,
-                date: dateFormated,
+                date: time,
                 image: imageUrls,
                 commentaryID: commentaryID,
             })
