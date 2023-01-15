@@ -95,7 +95,12 @@
         border: 1px solid var(--white1);
         border-radius: 3px;
         color: var(--white1); 
+        transition: all 0.3s ease;
         
+    }
+    button:hover {
+        background-color: var(--white1);
+        color: var(--dark1);
     }
 }
 
@@ -107,6 +112,9 @@
         margin: auto;
         width: 100%;
        
+    }
+    input::placeholder {
+       color:  var(--dark1);
     }
 }
 

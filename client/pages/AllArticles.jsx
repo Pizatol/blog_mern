@@ -35,9 +35,9 @@ export default function AllArticles() {
 
     return (
         <div className={css.global_container}>
-            <Link href={"/"}>
+            {/* <Link href={"/"}>
                 <button>Retour</button>
-            </Link>
+            </Link> */}
             {user ? (
                     <Link href={"/NewArticle"}>
                         <button> New article</button>

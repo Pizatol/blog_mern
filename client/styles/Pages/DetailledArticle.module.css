@@ -100,6 +100,11 @@
   border: 1px solid var(--white1);
   border-radius: 3px;
   color: var(--white1);
+  transition: all 0.3s ease;
+}
+.commentary_section_label button:hover {
+  background-color: var(--white1);
+  color: var(--dark1);
 }
 
 .commentary_section:focus-within span {
@@ -108,6 +113,15 @@
   border: 1px solid var(--white1);
   margin: auto;
   width: 100%;
+}
+.commentary_section:focus-within input::-moz-placeholder {
+  color: var(--dark1);
+}
+.commentary_section:focus-within input:-ms-input-placeholder {
+  color: var(--dark1);
+}
+.commentary_section:focus-within input::placeholder {
+  color: var(--dark1);
 }
 
 .commentaries_container {
