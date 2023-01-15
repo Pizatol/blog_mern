@@ -26,6 +26,9 @@
     flex-wrap: wrap;
     padding: 20px 30px;
     font-family: var(--DM);
+    font-size: var(--size1);
+    font-weight: 500;
+    line-height: 25px;
 }
 
 .images_container {
@@ -116,6 +119,14 @@
     input::placeholder {
        color:  var(--dark1);
     }
+}
+
+// MARKDOWN
+.markdown {
+  
+    width: 100%;
+    height: auto;
+    // font-weight: 500;
 }
 
 // COMMENTAIRES

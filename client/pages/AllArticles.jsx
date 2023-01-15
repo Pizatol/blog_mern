@@ -48,6 +48,8 @@ export default function AllArticles() {
 
             <div className={css.articles_container}>
                 {allArticles.map((item, index) => (
+                    <div className={css.article} key={index}>
+
                     <Article_mini
                         title={item.title}
                         description={item.description}
@@ -60,6 +62,7 @@ export default function AllArticles() {
                         allArticles = {allArticles}
                         setAllArticles = {setAllArticles}
                     />
+                    </div>
                 ))}
             </div>
         </div>

@@ -12,6 +12,8 @@ import { formattedDateWithSeconds } from "../Components/formatted_precise_date";
 import img from "../public/assets/images/img00.jpg";
 import FirebaseAuthService from "../Firebase/FirebaseAuthService";
 
+import ReactMarkdown from 'react-markdown'
+
 export default function DetailledArticle() {
     const { user, setUser, userName, setUserName } = useContext(LoginContext);
 
@@ -25,7 +27,7 @@ export default function DetailledArticle() {
     const [commentary, setCommentary] = useState("");
     const [loading, setLoading] = useState(false)
 
-   
+   const mdTest = "# Hello, *world*!"
 
     // LOG
   console.log(article.date);
@@ -139,7 +141,12 @@ export default function DetailledArticle() {
 
                     <h3>{article.description}</h3>
 
-                    <p>{article.text}</p>
+                    {/* <p>{article.text}</p> */}
+                    {/* <Markdown> {article.text} </Markdown> */}
+                    <ReactMarkdown children={article.text} className={css.markdown} />
+                    <p>
+                    
+                    </p>
                 </div>
                 <div className={css.images_container}>
                     {article.image

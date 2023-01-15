@@ -10,6 +10,7 @@ import { v4 } from "uuid";
 import { useRouter } from "next/router";
 import { formattedDateWithSeconds } from "./formatted_precise_date";
 
+
 export default function AddArticle() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
