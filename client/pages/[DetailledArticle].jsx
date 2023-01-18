@@ -158,7 +158,7 @@ export default function DetailledArticle() {
                                   <Image
                                       className={css.image}
                                       src={img.url}
-                                      alt="image"
+                                      alt="image article"
                                       fill
                                       sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
