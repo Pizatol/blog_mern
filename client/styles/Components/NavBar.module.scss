@@ -6,7 +6,8 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	margin-bottom: 100px;
+	margin: 50px 0 100px;
+	// margin-bottom: 100px;
 	color: var(--white1);
 
 }
@@ -14,4 +15,22 @@
 .userName {
 	font-size: var(--size2);
 	margin-left: 0px;
+}
+
+.middle {
+
+	
+
+
+		text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+		font-size: var(--size2);
+		font-family: var(--DM);
+		color: var(--white1);
+		text-transform:uppercase;
+		transition: all .5s ease;
+
+	
+}
+.middle:hover {
+	text-shadow: 0 0 10px #fff, 0 0 15px #fff;
 }

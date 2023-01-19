@@ -5,6 +5,8 @@ import FirebaseAuthService from "../Firebase/FirebaseAuthService";
 
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import Button_main from "./Buttons/Button_main";
+import Button_transparent from "./Buttons/Button_transparent";
 
 export default function NavBar() {
     const { user, setUser, formOn, setFormOn, userName, setUserName } =
@@ -54,12 +56,13 @@ export default function NavBar() {
             </div>
             <div className={css.middle}>
                 <h1>Le Blog</h1>
+             
             </div>
             <div className={css.right}>
                 {user ? (
-                    <button onClick={logOut}> Log out</button>
+                    <Button_transparent name={"log out"} foo={logOut} />
                 ) : (
-                    <button onClick={toggleForm}> Log</button>
+                    <Button_transparent name={"log"} foo={toggleForm} />
                 )}
             </div>
         </div>

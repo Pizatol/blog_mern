@@ -6,6 +6,7 @@ import Article_mini from "../Components/Article_mini";
 import { LoginContext } from "../context/LoginContext";
 
 import formattedDate from "../Components/formattedDate";
+import Button_transparent from "../Components/Buttons/Button_transparent";
 
 export default function AllArticles() {
 
@@ -38,15 +39,19 @@ export default function AllArticles() {
             {/* <Link href={"/"}>
                 <button>Retour</button>
             </Link> */}
+           
+
+            <div className={css.articles_container}>
+
             {user ? (
                     <Link href={"/NewArticle"}>
-                        <button> New article</button>
+                      <Button_transparent name={"New  Article"} />
                     </Link>
+                    
                 ) : (
                     ""
                 )}
 
-            <div className={css.articles_container}>
                 {allArticles.map((item, index) => (
                     <div className={css.article} key={index}>
 

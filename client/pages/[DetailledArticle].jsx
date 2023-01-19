@@ -14,6 +14,7 @@ import img from "../public/assets/images/2.jpg";
 import FirebaseAuthService from "../Firebase/FirebaseAuthService";
 
 import ReactMarkdown from "react-markdown";
+import Button_transparent from "../Components/Buttons/Button_transparent";
 
 export default function DetailledArticle({ query }) {
     const { user, setUser, userName, setUserName } = useContext(LoginContext);
@@ -110,16 +111,21 @@ export default function DetailledArticle({ query }) {
     };
 
     return (
-        <div>
-            <div>
-                <Link href={"/"}>
-                    <button> Retour</button>
-                </Link>
-            </div>
-                
-            {loading ? (
+        <div className={css.global}>
+           
+           <div>
+           <Link href={'/'}>
+
+            <Button_transparent name={"Retour"} />
+           </Link>
+           </div>
          
+                
+            {loading ? (    
+                
+          
             <div className={css.global_container}>
+          
                 <div className={css.image_container_upper}>
                     {loading === true && article.image && article.image.length > 0  ? (
                         <Image
@@ -187,14 +193,15 @@ export default function DetailledArticle({ query }) {
                             placeholder="Ajouter un commentaire"
                         />
                         <span className={css.commentary_section_bar}></span>
-                        <button
+                        {/* <button
                             className={css.commentary_section_button}
                             onClick={addCommentary}
                             type="button"
                         >
                             Commenter
-                        </button>
+                        </button> */}
                     </label>
+                        <Button_transparent name={'Commenter'} foo={addCommentary} />
                 </div>
             ) : (
                 ""

@@ -1,3 +1,10 @@
+.global {
+  max-width: 1200px;
+  width: auto;
+  height: auto;
+  margin: 100px auto 0;
+}
+
 .global_container {
   max-width: 1200px;
   width: auto;
@@ -80,7 +87,7 @@
 .commentary_section_label input {
   height: 50px;
   width: 100%;
-  background-color: var(--dark1);
+  background-color: transparent;
   border: none;
   outline: none;
   color: var(--white1);
@@ -103,22 +110,7 @@
   width: 0%;
   margin: auto;
   transition: all 0.3s ease;
-}
-.commentary_section_label button {
-  width: 100px;
-  background-color: var(--dark1);
-  display: flex;
-  justify-content: center;
-  margin-top: 5px;
-  padding: 10px 15px;
-  border: 1px solid var(--white1);
-  border-radius: 3px;
-  color: var(--white1);
-  transition: all 0.3s ease;
-}
-.commentary_section_label button:hover {
-  background-color: var(--white1);
-  color: var(--dark1);
+  margin-bottom: 10px;
 }
 
 .commentary_section:focus-within span {
@@ -127,15 +119,16 @@
   border: 1px solid var(--white1);
   margin: auto;
   width: 100%;
+  margin-bottom: 10px;
 }
 .commentary_section:focus-within input::-moz-placeholder {
-  color: var(--dark1);
+  color: var(--white1);
 }
 .commentary_section:focus-within input:-ms-input-placeholder {
-  color: var(--dark1);
+  color: var(--white1);
 }
 .commentary_section:focus-within input::placeholder {
-  color: var(--dark1);
+  color: var(--white1);
 }
 
 .commentaries_container {
@@ -148,6 +141,7 @@
 }
 
 .commentary {
+  background-color: transparent;
   margin: 10px 0;
   padding: 10px;
   color: var(--white1);

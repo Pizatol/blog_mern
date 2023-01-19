@@ -17,6 +17,7 @@ import {
 import { storage } from "../Firebase/FirebaseConfig";
 import { useRouter } from "next/router";
 import Button_readMore from "./Buttons/Button_readMore";
+import Button_transparent from "./Buttons/Button_transparent";
 
 export default function Article_mini({
     title,
@@ -87,7 +88,14 @@ export default function Article_mini({
                         <Button_readMore />
                     </Link>
                     {user ? (
-                        <button onClick={() => handleDelete(id)}>X</button>
+                        <div className={css.delete_button_container}>
+                            {/* <button onClick={() => handleDelete(id)}>X</button> */}
+                            <Button_transparent
+                                foo={() => handleDelete(id)}
+                                name={"delete"}
+                                red={true}
+                            />
+                        </div>
                     ) : (
                         ""
                     )}
