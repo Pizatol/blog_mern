@@ -58,7 +58,7 @@ export default function Article_mini({
 
     return (
         <div className={css.global_container}>
-            <div className={css.left_part_card}>
+            {/* <div className={css.left_part_card}>
                 {first_preview_image.length > 0 ? (
                     <Image
                         className={css.image_card}
@@ -74,13 +74,13 @@ export default function Article_mini({
                         fill
                     />
                 )}
-            </div>
+            </div> */}
             <div className={css.right_part_card}>
                 <h4>{date} </h4>
                 <h4> {author} </h4>
                 <h2> {title} </h2>
                 <h3> {description} </h3>
-                <Link href={`${id}`}>
+                <Link href={{ pathname :`${id}` }}>
                     <Button_main color={"orange"} name={"Read More"} />
                     <button onClick={() => handleDelete(id)}>delete</button>
                 </Link>
@@ -88,3 +88,5 @@ export default function Article_mini({
         </div>
     );
 }
+
+// href={`${id}`

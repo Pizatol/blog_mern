@@ -100,7 +100,7 @@ export default function AddArticle() {
 
     const countLetters = (cnt) => {
         if (cnt.length > -1) {
-            const value = 70 - cnt.length;
+            const value = 200 - cnt.length;
             return value;
         }
     };
@@ -128,7 +128,7 @@ export default function AddArticle() {
                 <div className={`${css.input} ${css.description_textarea}`}>
                     <label> Description ({countLetters(description)}) </label>
                     <textarea
-                        maxlength="70"
+                        maxlength="200"
                         onChange={(e) => setDescription(e.target.value)}
                         value={description}
                     ></textarea>

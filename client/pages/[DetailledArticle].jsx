@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import Axios from "Axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,51 +13,48 @@ import { formattedDateWithSeconds } from "../Components/formatted_precise_date";
 import img from "../public/assets/images/img00.jpg";
 import FirebaseAuthService from "../Firebase/FirebaseAuthService";
 
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from "react-markdown";
 
-export default function DetailledArticle() {
+export default function DetailledArticle({ query }) {
     const { user, setUser, userName, setUserName } = useContext(LoginContext);
 
     const router = useRouter();
+    // const searchParams = useSearchParams();
 
-    const slugID = Object.values(router.query);
-    const articleID = String(slugID);
+    let slugID = Object.values(router.query);
 
+    let articleID = String(slugID);
     const [article, setArticle] = useState({});
     const [commentaries, setCommentaries] = useState([]);
     const [commentary, setCommentary] = useState("");
-    const [loading, setLoading] = useState(false)
-
-   const mdTest = "# Hello, *world*!"
-
-    // LOG
-  console.log(article.date);
-
-    // ******************
-    //     TRIER COMMENTAIRES AVEC LE commentaryIndex
-    // var numArray = [140000, 104, 99, 12, 50 , 300, 3, 5, 6];
-    // numArray.sort(function(a, b) {
-    //   return a - b;
-    // });
-    // console.log(numArray);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        // for (const [key, value] of searchParams) {
+        //     slugID = value;
+        //     console.log("SLUG", slugID);
+        // }
+
         Axios.put("http://localhost:3001/fetchOneArticle", {
             id: slugID,
-        }).then((response) => {
-            try {
-                setArticle(response.data);
-                setLoading(true)
-            } catch (error) {
-                console.log(error);
-            }
-        });
+        })
+
+            .then((response) => {
+                try {
+                    setArticle(response.data);
+                    // setLoading(true)
+                } catch (error) {
+                    console.log(error);
+                }
+            })
+            .then(() => {
+                setLoading(true);
+            });
 
         Axios.put("http://localhost:3001/fetchCommentaries", {
             id: slugID,
         }).then((response) => {
             try {
-               
                 const filterCommentaries = response.data.filter(
                     (item) => item.articleID === articleID
                 );
@@ -66,7 +64,7 @@ export default function DetailledArticle() {
                 console.log(error);
             }
         });
-    }, [commentary, setLoading]);
+    }, []);
 
     const addCommentary = async () => {
         const time = formattedDateWithSeconds();
@@ -111,13 +109,16 @@ export default function DetailledArticle() {
         });
     };
 
-    
-
     return (
         <div>
+            <div>
+                <Link href={"/"}>
+                    <button> Retour</button>
+                </Link>
+            </div>
             <div className={css.global_container}>
-                <div className={css.image_container_upper}>
-                    {loading === true && article.image.length > 0 ? (
+                {/* <div className={css.image_container_upper}>
+                    {loading === true ? (
                         <Image
                             className={css.image_card}
                             src={article.image[0].url}
@@ -132,42 +133,43 @@ export default function DetailledArticle() {
                             fill
                         />
                     )}
-                </div>
+                </div> */}
                 <div className={css.data_container}>
                     <p>{article.author} </p>
                     <h4> {article.date}</h4>
 
                     <h1>{article.title} </h1>
 
-                    <h3>{article.description}</h3>
+                    <h3 className={css.description}>{article.description}</h3>
 
-                    {/* <p>{article.text}</p> */}
-                    {/* <Markdown> {article.text} </Markdown> */}
-                    <ReactMarkdown children={article.text} className={css.markdown} />
-                    <p>
-                    
-                    </p>
+                    <ReactMarkdown
+                        children={article.text}
+                        className={css.markdown}
+                    />
+                    <p></p>
                 </div>
-                <div className={css.images_container}>
+                {/* <div className={css.images_container}>
                     {article.image
                         ? article.image.map((img, index) => (
                               <div
                                   className={css.image_container_mini}
                                   key={index}
                               >
-                                  <Image
-                                      className={css.image}
-                                      src={img.url}
-                                      alt="image article"
-                                      fill
-                                      sizes="(max-width: 768px) 100vw,
+                                  <a target="_blank" href={img.url}>
+                                      <Image
+                                          className={css.image}
+                                          src={img.url}
+                                          alt="image article"
+                                          fill
+                                          sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"
-                                  />
+                                      />
+                                  </a>
                               </div>
                           ))
                         : ""}
-                </div>
+                </div> */}
             </div>
 
             {user ? (
@@ -204,14 +206,38 @@ export default function DetailledArticle() {
                     </div>
                 ))}
             </div>
-
-            <div>
-                <Link href={"/"}>
-                    <button> Retour</button>
-                </Link>
-            </div>
         </div>
     );
 }
 
-//  author, date , description , text  , title
+// export const getStaticPaths = async () => {
+//     const res = await fetch('http://localhost:3001/fetchArticles');
+//     const { data } = await res.json();
+
+//     const paths = data.map(user => {
+//     return {
+//     params: { id: user.id.toString() }
+//     }
+//     })
+//     return {
+//     paths,
+//     fallback: false
+//     }
+//     }
+
+//     export const getStaticProps = async (context) => {
+//         const id = context.params.id;
+//         const res = await fetch(`http://localhost:3001/${id}`);
+//         const { data } = await res.json();
+//         return {
+//         props: { user: data }
+//         }
+//         }
+
+// ******************
+//     TRIER COMMENTAIRES AVEC LE commentaryIndex
+// var numArray = [140000, 104, 99, 12, 50 , 300, 3, 5, 6];
+// numArray.sort(function(a, b) {
+//   return a - b;
+// });
+// console.log(numArray);

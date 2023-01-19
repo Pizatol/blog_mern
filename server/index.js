@@ -42,6 +42,7 @@ app.get("/fetchArticles", async (req, res) => {
 
 app.put("/fetchOneArticle", async (req, res) => {
     const id = req.body.id;
+ 
 
     ArticleModel.findById(id, (error, result) => {
         if (error) {
