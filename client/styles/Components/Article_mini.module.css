@@ -3,10 +3,16 @@
   align-items: center;
   width: 550px;
   height: 300px;
-  background-color: #F3F3F3;
-  border-radius: 25px;
+  background-color: var(--violet4);
+  border: 1px solid var(--white1);
+  border-radius: 20px;
   margin: 50px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: all 0.2s ease;
+}
+
+.global_container:hover {
+  outline: 1px solid var(--white1);
+  box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px;
 }
 
 .left_part_card {
@@ -15,30 +21,37 @@
   height: 200px;
   border-radius: 25px;
   overflow: hidden;
-  transform: translateX(-50px);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .image_card {
   -o-object-fit: cover;
      object-fit: cover;
   overflow: hidden;
+  display: flex;
 }
 
 .right_part_card {
-  font-family: var(--DM);
-  color: var(--dark1);
-  width: 55%;
+  padding: 20px 25px;
+  font-family: var(--Montserrat);
+  color: var(--white1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 .right_part_card h2 {
-  font-size: var(--size1);
+  font-size: var(--size2);
   font-weight: 600;
 }
 .right_part_card h3 {
-  font-size: var(--size0);
-  color: var(--dark2);
+  width: 100%;
+  font-size: var(--size1);
+  color: var(--white1);
   margin-bottom: 50px;
-  white-space: nowrap;
+  white-space: wrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.buttons_container {
+  display: flex;
 }/*# sourceMappingURL=Article_mini.module.css.map */

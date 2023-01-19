@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { v4 } from "uuid";
 import { LoginContext } from "../context/LoginContext";
 import { formattedDateWithSeconds } from "../Components/formatted_precise_date";
-import img from "../public/assets/images/img00.jpg";
+import img from "../public/assets/images/2.jpg";
 import FirebaseAuthService from "../Firebase/FirebaseAuthService";
 
 import ReactMarkdown from "react-markdown";
@@ -42,7 +42,7 @@ export default function DetailledArticle({ query }) {
             .then((response) => {
                 try {
                     setArticle(response.data);
-                    // setLoading(true)
+                    setLoading(true)
                 } catch (error) {
                     console.log(error);
                 }
@@ -116,9 +116,12 @@ export default function DetailledArticle({ query }) {
                     <button> Retour</button>
                 </Link>
             </div>
+                
+            {loading ? (
+         
             <div className={css.global_container}>
-                {/* <div className={css.image_container_upper}>
-                    {loading === true ? (
+                <div className={css.image_container_upper}>
+                    {loading === true && article.image && article.image.length > 0  ? (
                         <Image
                             className={css.image_card}
                             src={article.image[0].url}
@@ -131,9 +134,10 @@ export default function DetailledArticle({ query }) {
                             src={img}
                             alt="image blog"
                             fill
+                            loading="lazy"
                         />
                     )}
-                </div> */}
+                </div>
                 <div className={css.data_container}>
                     <p>{article.author} </p>
                     <h4> {article.date}</h4>
@@ -141,6 +145,7 @@ export default function DetailledArticle({ query }) {
                     <h1>{article.title} </h1>
 
                     <h3 className={css.description}>{article.description}</h3>
+                        {/* MARKDOWN */}
 
                     <ReactMarkdown
                         children={article.text}
@@ -148,7 +153,7 @@ export default function DetailledArticle({ query }) {
                     />
                     <p></p>
                 </div>
-                {/* <div className={css.images_container}>
+                <div className={css.images_container}>
                     {article.image
                         ? article.image.map((img, index) => (
                               <div
@@ -169,10 +174,10 @@ export default function DetailledArticle({ query }) {
                               </div>
                           ))
                         : ""}
-                </div> */}
+                </div>
             </div>
-
-            {user ? (
+            ) : ''}
+            {user && loading ? (
                 <div className={css.commentary_section}>
                     <label className={css.commentary_section_label}>
                         <input

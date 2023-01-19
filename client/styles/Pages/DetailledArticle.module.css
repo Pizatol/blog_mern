@@ -53,6 +53,17 @@
   overflow: hidden;
 }
 
+.markdown {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  font-family: var(--DM);
+  line-height: 29px;
+  justify-content: center;
+  align-items: center;
+}
+
 .commentary_section {
   max-width: 1200px;
   width: auto;
@@ -125,14 +136,6 @@
 }
 .commentary_section:focus-within input::placeholder {
   color: var(--dark1);
-}
-
-.markdown {
-  width: 100%;
-  height: auto;
-  margin: auto;
-  text-align: justify;
-  padding: 0 10px;
 }
 
 .commentaries_container {

@@ -7,13 +7,4 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  transition: all 0.4s ease;
-}
-
-.article {
-  transition: all 0.4s ease;
-}
-
-.article:hover {
-  transform: scale(0.995);
 }/*# sourceMappingURL=AllArticles.module.css.map */

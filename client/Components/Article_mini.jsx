@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import css from "../styles/Components/Article_mini.module.scss";
 import Button_main from "./Buttons/Button_main";
 import Image from "next/image";
 import Link from "next/link";
+import { LoginContext } from "../context/LoginContext";
 import img2 from "../public/assets/images/img00.jpg";
 import Axios from "Axios";
 import {
@@ -15,6 +16,7 @@ import {
 } from "firebase/storage";
 import { storage } from "../Firebase/FirebaseConfig";
 import { useRouter } from "next/router";
+import Button_readMore from "./Buttons/Button_readMore";
 
 export default function Article_mini({
     title,
@@ -27,6 +29,7 @@ export default function Article_mini({
     allArticles,
     setAllArticles,
 }) {
+    const { user } = useContext(LoginContext);
     const router = useRouter();
     const imagesListRef = ref(storage, "images/");
     let first_preview_image = [];
@@ -76,14 +79,19 @@ export default function Article_mini({
                 )}
             </div> */}
             <div className={css.right_part_card}>
-                <h4>{date} </h4>
-                <h4> {author} </h4>
                 <h2> {title} </h2>
                 <h3> {description} </h3>
-                <Link href={{ pathname :`${id}` }}>
-                    <Button_main color={"orange"} name={"Read More"} />
-                    <button onClick={() => handleDelete(id)}>delete</button>
-                </Link>
+                <div className={css.buttons_container}>
+                    <Link href={{ pathname: `${id}` }}>
+                        {/* <Button_main color={"orange"} name={"Read More"} /> */}
+                        <Button_readMore />
+                    </Link>
+                    {user ? (
+                        <button onClick={() => handleDelete(id)}>X</button>
+                    ) : (
+                        ""
+                    )}
+                </div>
             </div>
         </div>
     );
