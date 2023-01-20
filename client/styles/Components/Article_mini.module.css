@@ -54,4 +54,8 @@
 
 .buttons_container {
   display: flex;
+}
+
+.delete_button_container {
+  margin-left: 10px;
 }/*# sourceMappingURL=Article_mini.module.css.map */

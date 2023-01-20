@@ -9,19 +9,41 @@
 }
 
 .userName {
-  font-size: var(--size2);
+  font-size: var(--size1);
   margin-left: 0px;
 }
 
 .middle {
   text-shadow: 0 0 5px #fff, 0 0 10px #fff;
-  font-size: var(--size2);
+  font-size: var(--size3);
   font-family: var(--DM);
+  letter-spacing: 10px;
   color: var(--white1);
   text-transform: uppercase;
-  transition: all 0.5s ease;
+  -webkit-animation: 3s ease infinite glow;
+          animation: 3s ease infinite glow;
 }
 
-.middle:hover {
-  text-shadow: 0 0 10px #fff, 0 0 15px #fff;
+@-webkit-keyframes glow {
+  0% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+  }
+  50% {
+    text-shadow: 0 0 15px #fff, 0 0 20px #fff;
+  }
+  100% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+  }
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+  }
+  50% {
+    text-shadow: 0 0 15px #fff, 0 0 20px #fff;
+  }
+  100% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff;
+  }
 }/*# sourceMappingURL=NavBar.module.css.map */
