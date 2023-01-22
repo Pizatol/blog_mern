@@ -10,7 +10,7 @@ dotenv.config();
 
 app.use(express.json());
 app.use(cors());
-mongoose.set("strictQuery", true);
+mongoose.set("strictQuery", false);
 
 const connectDB = async () => {
     try {
